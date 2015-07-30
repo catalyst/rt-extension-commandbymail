@@ -1,0 +1,23 @@
+Source: rt-extension-commandbymail
+Section: perl
+Priority: optional
+Maintainer: Andrew Ruthven <puck@catalyst.net.nz>
+Build-Depends: debhelper (>= 9.20120312), request-tracker4
+Build-Depends-Indep: perl
+Standards-Version: 3.9.6
+Vcs-Git: https://github.com/catalyst/rt-extension-commandbymail.git
+Vcs-Browser: https://github.com/catalyst/rt-extension-commandbymail/tree/dpkg
+Homepage: https://metacpan.org/release/RT-Extension-CommandByMail
+
+Package: rt4-extension-commandbymail
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ request-tracker4 (>= 4.0.0),
+ perl
+Description: Change metadata of ticket via email (Request Tracker)
+ This extension allows you to manage tickets via email interface. You may
+ put commands into the beginning of a mail, and extension will apply
+ them.
+ .
+ This is for RT >= 4.0.0.
+

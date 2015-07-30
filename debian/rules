@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+RT_VERSIONS=4
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	for ver in $(RT_VERSIONS); do \
+	 export RTHOME=/usr/share/request-tracker$$ver; \
+	 perl Makefile.PL DESTDIR=$(CURDIR)/debian/rt$$ver-extension-commandbymail \
+             INSTALLSITEMAN1DIR=/usr/share/man/man1 \
+             INSTALLSITEMAN3DIR=/usr/share/man/man3; \
+	 sed -i "s,/usr/local/share/request-tracker4/plugins,/usr/share/request-tracker$$ver/plugins," Makefile; \
+	 mv Makefile Makefile$$ver; \
+	done
+
+override_dh_auto_build:
+
+override_dh_auto_test:
+
+override_dh_auto_install:
+	for ver in $(RT_VERSIONS); do \
+	 ln -sf Makefile$$ver Makefile; \
+	 make install; \
+         rm debian/rt$$ver-extension-commandbymail/usr/local/share/request-tracker$$ver/man/auto/RT/Extension/CommandByMail/.packlist \
+           debian/rt$$ver-extension-commandbymail/usr/local/share/request-tracker$$ver/man/perllocal.pod; \
+        done
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf MYMETA.yml Makefile4 blib
+

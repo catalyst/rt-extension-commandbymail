@@ -1,0 +1,5 @@
+rt-extension-commandbymail (1.00-1) unstable; urgency=medium
+
+  * Initial Release. (Closes: #415701)
+
+ -- Andrew Ruthven <puck@catalyst.net.nz>  Fri, 31 Jul 2015 11:20:55 +1200
