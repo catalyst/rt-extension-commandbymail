@@ -3,7 +3,6 @@ use warnings;
 
 use RT::Extension::CommandByMail::Test tests => undef;
 my $test = 'RT::Extension::CommandByMail::Test';
-RT->Config->Set('MailPlugins', 'Auth::MailFrom', 'Filter::TakeAction');
 
 my $test_ticket_id;
 
@@ -21,6 +20,22 @@ END
     $obj->Load( $id );
     is($obj->id, $id, "loaded ticket");
     $test_ticket_id = $id;
+}
+
+diag("test with umlaut in subject") if $ENV{'TEST_VERBOSE'};
+{
+    my $text = <<END;
+Subject: test =?UTF-8?B?QnJvbnTDqw==?=
+From: root\@localhost
+
+test
+END
+    my (undef, $id) = $test->send_via_mailgate( $text );
+    ok($id, "created ticket");
+    my $obj = RT::Ticket->new( $RT::SystemUser );
+    $obj->Load( $id );
+    is($obj->id, $id, "loaded ticket");
+    is($obj->Subject, Encode::decode("UTF-8","test Brontë"), "got correct subject with umlauts");
 }
 
 # XXX: use statuses from config/libs
@@ -361,6 +376,23 @@ END
         );
     }
 
+}
+
+RT::Config->Set('ParseNewMessageForTicketCcs', 1);
+diag("test with ParseNewMessageForTicketCcs set") if $ENV{'TEST_VERBOSE'};
+{
+    my $text = <<END;
+Subject: test
+From: root\@localhost
+
+test
+END
+    my (undef, $id) = $test->send_via_mailgate( $text );
+    ok($id, "created ticket");
+    my $obj = RT::Ticket->new( $RT::SystemUser );
+    $obj->Load( $id );
+    is($obj->id, $id, "loaded ticket");
+    $test_ticket_id = $id;
 }
 
 done_testing();
