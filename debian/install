@@ -1,0 +1,5 @@
+etc usr/share/request-tracker4/plugins/RT-Extension-RepeatTicket
+html usr/share/request-tracker4/plugins/RT-Extension-RepeatTicket
+lib usr/share/request-tracker4/plugins/RT-Extension-RepeatTicket
+po usr/share/request-tracker4/plugins/RT-Extension-RepeatTicket
+static usr/share/request-tracker4/plugins/RT-Extension-RepeatTicket

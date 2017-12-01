@@ -1,10 +1,11 @@
 Source: rt-extension-commandbymail
 Section: perl
 Priority: optional
-Maintainer: Andrew Ruthven <puck@catalyst.net.nz>
-Build-Depends: debhelper (>= 9.20120312), request-tracker4
-Build-Depends-Indep: perl
-Standards-Version: 3.9.6
+Maintainer: Andrew Ruthven <andrew@etc.gen.nz>
+Build-Depends: debhelper (>= 9.20120312)
+Build-Depends-Indep: libmodule-install-rtx-perl (>= 0.37-3~),
+ perl
+Standards-Version: 3.9.8
 Vcs-Git: https://github.com/catalyst/rt-extension-commandbymail.git
 Vcs-Browser: https://github.com/catalyst/rt-extension-commandbymail/tree/dpkg
 Homepage: https://metacpan.org/release/RT-Extension-CommandByMail

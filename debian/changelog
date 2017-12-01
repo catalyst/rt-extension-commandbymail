@@ -1,3 +1,9 @@
+rt-extension-commandbymail (3.00-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Andrew Ruthven <puck@catalyst.net.nz>  Tue, 14 Nov 2017 01:12:20 +0000
+
 rt-extension-commandbymail (1.00-1) unstable; urgency=medium
 
   * Initial Release. (Closes: #415701)
